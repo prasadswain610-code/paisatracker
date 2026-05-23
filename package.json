@@ -1,0 +1,17 @@
+{
+  "name": "paisa-tracker",
+  "version": "1.0.0",
+  "description": "Paisa Tracker - Premium Student Finance Companion Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y lite-server"
+  },
+  "keywords": [
+    "fintech",
+    "finance",
+    "budget",
+    "student"
+  ],
+  "author": "Paisa Tracker team",
+  "license": "MIT"
+}

@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#090d16">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Paisa Tracker - Your Student Finance Companion</title>
+  <meta name="description" content="Track expenses, grow savings, monitor investments, and build smart financial habits — all in one premium student fintech platform.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==================== TOAST NOTIFICATION SYSTEM ==================== -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Sidebar backdrop overlay for mobile -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop" onclick="ui.toggleSidebar()"></div>
+
+  <!-- ==================== 1. LANDING PAGE VIEW ==================== -->
+  <div id="view-landing" class="landing-view">
+    <nav class="landing-nav">
+      <div class="logo-container">
+        <div class="logo-icon"><i data-lucide="wallet"></i></div>
+        <span class="logo-text">Paisa<span class="gradient-text">Tracker</span></span>
+      </div>
+      <div>
+        <button onclick="router.navigate('login')" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.1); color: white;">Log In</button>
+        <button onclick="router.navigate('signup')" class="btn btn-primary" style="margin-left: 12px;">Get Started</button>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="landing-hero">
+      <div class="hero-left">
+        <span class="section-tag">Finance for Gen-Z</span>
+        <h1>Take Control of Your <span class="gradient-text">Money</span> Before Life Gets Expensive.</h1>
+        <p>Track expenses, grow savings, monitor investments, and build smart financial habits — all in one premium, gamified companion made just for students.</p>
+        <div class="hero-btns">
+          <button onclick="router.navigate('signup')" class="btn btn-primary btn-lg">Get Started Free <i data-lucide="arrow-right"></i></button>
+          <button onclick="router.navigate('login')" class="btn btn-secondary btn-lg" style="color: white; border-color: rgba(255,255,255,0.2);">View Demo</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <!-- Floating UI mockups -->
+        <div class="mockup-container glass">
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
+            <div style="display: flex; gap: 6px;"><div style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444;"></div><div style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b;"></div><div style="width: 10px; height: 10px; border-radius: 50%; background: #10b981;"></div></div>
+            <span style="font-size: 0.75rem; color: #64748b;">dashboard_preview.exe</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+            <span style="font-weight: 700; font-size: 1.25rem;">₹18,450.00</span>
+            <span style="font-size: 0.75rem; color: var(--primary); display: flex; align-items: center; gap: 4px;"><i data-lucide="trending-up" style="width: 12px;"></i> +12% this month</span>
+          </div>
+          <div style="height: 120px; border-radius: 12px; background: rgba(255,255,255,0.02); display: flex; align-items: flex-end; justify-content: space-around; padding: 10px;">
+            <div style="width: 12%; height: 40%; background: var(--secondary); border-radius: 4px 4px 0 0;"></div>
+            <div style="width: 12%; height: 65%; background: var(--secondary); border-radius: 4px 4px 0 0;"></div>
+            <div style="width: 12%; height: 35%; background: var(--secondary); border-radius: 4px 4px 0 0;"></div>
+            <div style="width: 12%; height: 85%; background: var(--primary); border-radius: 4px 4px 0 0;"></div>
+            <div style="width: 12%; height: 50%; background: var(--secondary); border-radius: 4px 4px 0 0;"></div>
+          </div>
+          <div style="border-radius: 12px; background: rgba(255,255,255,0.03); padding: 12px; font-size: 0.8rem; display: flex; align-items: center; justify-content: space-between;">
+            <span style="display: flex; align-items: center; gap: 8px;"><i data-lucide="coffee" style="color: #f59e0b; width: 16px;"></i> Starbucks Coffee</span>
+            <span style="font-weight: 700; color: #ef4444;">-₹340.00</span>
+          </div>
+        </div>
+        
+        <!-- Floating overlay cards -->
+        <div class="floating-card fc-1">
+          <div style="display: flex; align-items: center; gap: 10px; color: white;">
+            <div style="background: rgba(255,255,255,0.2); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i data-lucide="trending-up" style="width:16px;"></i></div>
+            <div>
+              <div style="font-size: 0.65rem; opacity: 0.8;">SIP Investment</div>
+              <div style="font-size: 0.85rem; font-weight:700;">+24.8% Returns</div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-card fc-2">
+          <div style="display: flex; align-items: center; gap: 10px; color: white;">
+            <div style="background: rgba(255,255,255,0.2); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i data-lucide="award" style="width:16px;"></i></div>
+            <div>
+              <div style="font-size: 0.65rem; opacity: 0.8;">Saving Streak</div>
+              <div style="font-size: 0.85rem; font-weight:700;">14 Days 🔥</div>
+            </div>
+          </div>
+        </div>
+        <div class="floating-card fc-3">
+          <div style="display: flex; align-items: center; gap: 10px; color: white;">
+            <div style="background: rgba(255,255,255,0.2); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;"><i data-lucide="sparkles" style="width:16px;"></i></div>
+            <div>
+              <div style="font-size: 0.65rem; opacity: 0.8;">AI Financial Tip</div>
+              <div style="font-size: 0.8rem; font-weight:600;">"Reduce Food Spends"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- FEATURES SECTION -->
+    <section class="landing-features">
+      <div class="section-title-wrap">
+        <span class="section-tag">Core Features</span>
+        <h2 class="section-title">Packed with smart capabilities to power up your wallet.</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon-box feat-color-1"><i data-lucide="activity"></i></div>
+          <h3>Smart Expense Tracking</h3>
+          <p>Easily log transactions, categorize your expenses automatically, and check monthly visual summaries.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-box feat-color-2"><i data-lucide="target"></i></div>
+          <h3>Savings Milestones</h3>
+          <p>Create visual savings buckets, track progress, set milestones, and unlock celebratory gamified badges.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-box feat-color-3"><i data-lucide="trending-up"></i></div>
+          <h3>Investment Portfolios</h3>
+          <p>Simulate tracking stocks, mutual funds, SIPs, and crypto. Monitor net profit distribution maps.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-box feat-color-2"><i data-lucide="mic"></i></div>
+          <h3>Voice & OCR Assistant</h3>
+          <p>Enter expenses hands-free via real voice recognition or upload receipts for instant visual scanning.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-box feat-color-1"><i data-lucide="sparkles"></i></div>
+          <h3>AI Coach & Insights</h3>
+          <p>Chat with our AI bot for custom student suggestions, overspending alerts, and subscription optimizer triggers.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-box feat-color-3"><i data-lucide="zap"></i></div>
+          <h3>Gamified streaks</h3>
+          <p>Complete savings milestones, maintain daily check-off streaks, and climb community leaderboards.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+      <div class="section-title-wrap">
+        <span class="section-tag">Testimonials</span>
+        <h2 class="section-title">Loved by thousands of college students</h2>
+      </div>
+      <div class="testimonials-slider">
+        <p class="testimonial-quote">"Paisa Tracker has completely changed my college life. I used to run out of my pocket money by the 15th of every month. Now, I have saved up ₹8,000 for my Goa trip and even started my first mutual fund SIP!"</p>
+        <div class="testimonial-user">
+          <div class="t-avatar">R</div>
+          <div>
+            <div style="font-weight: 700; color: white;">Rohan Sharma</div>
+            <div style="font-size: 0.75rem; color: #9ca3af;">Delhi University (B.Com)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+      <div class="section-title-wrap">
+        <span class="section-tag">FAQs</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">Is it completely free? <i data-lucide="chevron-down"></i></div>
+          <div class="faq-answer">Yes! Paisa Tracker is built specifically for students and is 100% free with no premium paywalls for basic budgeting, goal setting, and tracking.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Is my financial data secure? <i data-lucide="chevron-down"></i></div>
+          <div class="faq-answer">Absolutely. We do not link directly to your real bank accounts or store private credentials. All mock transactions are stored locally on your device (browser LocalStorage) ensuring bank-grade absolute privacy.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Does it support Indian Currency (₹)? <i data-lucide="chevron-down"></i></div>
+          <div class="faq-answer">Yes, Paisa Tracker defaults to Indian Rupees (₹), and you can toggle to US Dollars ($) or other currencies inside the Settings panel instantly.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What is the AI Coach? <i data-lucide="chevron-down"></i></div>
+          <div class="faq-answer">The AI Coach is a conversational chatbot helper that reads your mock transaction logs to flag warning trends, predict bank balances, and suggest sub optimizations.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="landing-cta">
+      <div class="cta-box">
+        <h2>Start Building Financial Freedom Today.</h2>
+        <p>Master your money early. Join thousands of students tracking smart and saving more.</p>
+        <button onclick="router.navigate('signup')" class="btn btn-primary btn-lg">Get Started Free <i data-lucide="arrow-right"></i></button>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="landing-footer">
+      <div class="footer-cols">
+        <div class="footer-logo-desc">
+          <div class="logo-container" style="padding-left:0;">
+            <div class="logo-icon"><i data-lucide="wallet"></i></div>
+            <span class="logo-text" style="color:white;">Paisa<span class="gradient-text">Tracker</span></span>
+          </div>
+          <p>Your premium, smart financial companion helping you track, save, invest, and build solid habits.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="#" onclick="router.navigate('login'); return false;">Dashboard</a></li>
+            <li><a href="#" onclick="router.navigate('login'); return false;">Features</a></li>
+            <li><a href="#" onclick="router.navigate('login'); return false;">Gamification</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-col-title">Connect</h4>
+          <ul class="footer-links">
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Discord</a></li>
+            <li><a href="#">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Paisa Tracker. Made with ❤️ for students. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+
+  <!-- ==================== 2. AUTHENTICATION VIEW (LOGIN/SIGNUP) ==================== -->
+  <div id="view-auth" class="login-view" style="display: none;">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="auth-logo"><i data-lucide="wallet"></i></div>
+        <h2 id="auth-title">Welcome Back</h2>
+        <p id="auth-desc">Login to access your financial dashboard.</p>
+      </div>
+      
+      <form id="auth-form" class="auth-form" onsubmit="event.preventDefault(); auth.handleSubmit();">
+        <div class="form-group" id="signup-name-group" style="display: none;">
+          <label for="auth-name">Your Full Name</label>
+          <div class="input-wrapper">
+            <i data-lucide="user"></i>
+            <input type="text" id="auth-name" class="form-input" placeholder="e.g. Rohan Sharma">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="auth-email">Student Email Address</label>
+          <div class="input-wrapper">
+            <i data-lucide="mail"></i>
+            <input type="email" id="auth-email" class="form-input" placeholder="student@university.edu" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="auth-password">Password</label>
+          <div class="input-wrapper">
+            <i data-lucide="lock"></i>
+            <input type="password" id="auth-password" class="form-input" placeholder="••••••••" required>
+          </div>
+        </div>
+        
+        <button type="submit" id="auth-submit-btn" class="btn btn-primary" style="margin-top: 10px; width: 100%;">Log In</button>
+      </form>
+      
+      <div class="auth-footer">
+        <span id="auth-toggle-text">Don't have an account?</span> 
+        <span id="auth-toggle-btn" class="auth-toggle-link" onclick="auth.toggleState()">Sign Up</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==================== MAIN APPLICATION LAYOUT ==================== -->
+  <div id="app-shell" class="app-container" style="display: none;">
+    
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <div class="logo-icon"><i data-lucide="wallet"></i></div>
+        <span class="logo-text">Paisa<span class="gradient-text">Tracker</span></span>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <div class="nav-link active" onclick="router.navigate('dashboard')" data-tab="dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</div>
+        <div class="nav-link" onclick="router.navigate('expenses')" data-tab="expenses"><i data-lucide="arrow-down-right"></i> Expenses</div>
+        <div class="nav-link" onclick="router.navigate('savings')" data-tab="savings"><i data-lucide="piggy-bank"></i> Savings</div>
+        <div class="nav-link" onclick="router.navigate('investments')" data-tab="investments"><i data-lucide="trending-up"></i> Investments</div>
+        <div class="nav-link" onclick="router.navigate('budgets')" data-tab="budgets"><i data-lucide="pie-chart"></i> Budgets</div>
+        <div class="nav-link" onclick="router.navigate('analytics')" data-tab="analytics"><i data-lucide="bar-chart-3"></i> Analytics</div>
+        <div class="nav-link" onclick="router.navigate('ai-insights')" data-tab="ai-insights"><i data-lucide="sparkles"></i> AI Insights</div>
+        <div class="nav-link" onclick="router.navigate('profile')" data-tab="profile"><i data-lucide="award"></i> Profile & Streaks</div>
+        <div class="nav-link" onclick="router.navigate('settings')" data-tab="settings"><i data-lucide="settings"></i> Settings</div>
+      </nav>
+      
+      <!-- Mini Profile Info -->
+      <div class="profile-card-mini" onclick="router.navigate('profile')" style="cursor: pointer;">
+        <div class="avatar" id="sidebar-avatar">RS</div>
+        <div class="profile-info-mini">
+          <span class="profile-name" id="sidebar-name">Rohan Sharma</span>
+          <span class="profile-level" id="sidebar-level">Level 5 Budget Boss</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- WRAPPER FOR HEADER + VIEWS -->
+    <div class="main-wrapper">
+      
+      <!-- HEADER -->
+      <header class="header">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <button class="menu-toggle" onclick="ui.toggleSidebar()"><i data-lucide="menu"></i></button>
+          <h2 id="page-title" style="font-size: 1.5rem; font-weight: 700;">Dashboard</h2>
+        </div>
+        
+        <div class="header-right">
+          <!-- Notification Bell -->
+          <div class="header-action-btn" onclick="ui.toggleNotifications(event)">
+            <i data-lucide="bell"></i>
+            <span class="notification-dot" id="noti-dot"></span>
+            
+            <div id="noti-dropdown" class="notifications-dropdown">
+              <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">Notifications</h4>
+              <div id="noti-list">
+                <!-- Dynamic notification items go here -->
+              </div>
+            </div>
+          </div>
+          
+          <!-- Theme Switcher -->
+          <div class="header-action-btn" onclick="ui.toggleTheme()">
+            <i data-lucide="sun" id="theme-sun-icon" style="display: none;"></i>
+            <i data-lucide="moon" id="theme-moon-icon"></i>
+          </div>
+          
+          <button class="btn btn-primary" onclick="ui.showModal('modal-add-expense')"><i data-lucide="plus"></i> Add Spend</button>
+        </div>
+      </header>
+
+      <!-- CONTENT CONTAINER -->
+      <main class="content-container">
+
+        <!-- ==================== 3. DASHBOARD PAGE VIEW ==================== -->
+        <div id="view-dashboard" class="page-view active">
+          <!-- Financial overview summary cards -->
+          <div class="dashboard-grid">
+            <div class="card stat-card">
+              <div class="stat-icon stat-color-1"><i data-lucide="wallet"></i></div>
+              <div class="stat-details">
+                <span class="stat-label">Total Balance</span>
+                <span class="stat-value" id="dash-balance">₹18,450.00</span>
+                <span class="stat-change" style="color: var(--primary);"><i data-lucide="trending-up" style="width:12px; height:12px; display:inline-block; vertical-align:middle;"></i> +4.2% income</span>
+              </div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-icon stat-color-2"><i data-lucide="arrow-down-right"></i></div>
+              <div class="stat-details">
+                <span class="stat-label">Monthly Expenses</span>
+                <span class="stat-value" id="dash-expenses">₹6,840.00</span>
+                <span class="stat-change" style="color: #ef4444;"><i data-lucide="trending-down" style="width:12px; height:12px; display:inline-block; vertical-align:middle;"></i> 18% of pocket money</span>
+              </div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-icon stat-color-3"><i data-lucide="piggy-bank"></i></div>
+              <div class="stat-details">
+                <span class="stat-label">Savings Target</span>
+                <span class="stat-value" id="dash-savings">₹5,000.00</span>
+                <span class="stat-change" style="color: var(--secondary);"><i data-lucide="check" style="width:12px; height:12px; display:inline-block; vertical-align:middle;"></i> Goa Trip: 68% saved</span>
+              </div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-icon stat-color-4"><i data-lucide="trending-up"></i></div>
+              <div class="stat-details">
+                <span class="stat-label">Investment Portfolio</span>
+                <span class="stat-value" id="dash-investments">₹15,400.00</span>
+                <span class="stat-change" style="color: var(--accent-purple);"><i data-lucide="sparkles" style="width:12px; height:12px; display:inline-block; vertical-align:middle;"></i> +24.8% SIP profit</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts Row -->
+          <div class="charts-row">
+            <div class="card chart-card-container">
+              <h3 style="font-size: 1.1rem; margin-bottom: 20px;">Income vs Expense Trend</h3>
+              <canvas id="chart-cashflow" style="max-height: 250px; width: 100%;"></canvas>
+            </div>
+            <div class="card chart-card-container">
+              <h3 style="font-size: 1.1rem; margin-bottom: 20px;">Spending Breakdown</h3>
+              <canvas id="chart-categories" style="max-height: 250px; width: 100%;"></canvas>
+            </div>
+          </div>
+
+          <!-- Feed & AI widgets -->
+          <div class="dashboard-bottom-row">
+            <div class="card">
+              <div class="feed-header">
+                <h3 style="font-size: 1.1rem;">Recent Transactions</h3>
+                <button class="btn btn-secondary btn-sm" onclick="router.navigate('expenses')">View All</button>
+              </div>
+              <div id="dash-feed-list" class="feed-list">
+                <!-- Dynamic expense feed items -->
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 style="font-size: 1.1rem; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;"><i data-lucide="sparkles" style="color: var(--primary);"></i> AI recommendations</h3>
+              <div class="insight-card-compact">
+                <div class="compact-insight-item">
+                  <div class="cii-icon"><i data-lucide="alert-triangle"></i></div>
+                  <div class="cii-text">
+                    <strong>Subscription Alert:</strong> Netflix Premium is costing you ₹649/mo. Toggle "Share Plan" in AI Insights to cut it to ₹162/mo.
+                  </div>
+                </div>
+                <div class="compact-insight-item">
+                  <div class="cii-icon" style="color:var(--primary); background:rgba(0, 200, 150, 0.1);"><i data-lucide="trending-up"></i></div>
+                  <div class="cii-text">
+                    <strong>Savings Opportunities:</strong> Food delivery bills were 22% higher this week. Skipping 2 orders will save ₹850.
+                  </div>
+                </div>
+                <div class="compact-insight-item" style="color:var(--accent-purple); background:rgba(168, 85, 247, 0.1); border-color: rgba(168, 85, 247, 0.2);">
+                  <div class="cii-icon" style="color:var(--accent-purple);"><i data-lucide="award"></i></div>
+                  <div class="cii-text">
+                    <strong>Milestone Tracker:</strong> You're 3 days away from unlocking the "Savvy Saver" badge! Keep it up!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 4. EXPENSE TRACKER PAGE VIEW ==================== -->
+        <div id="view-expenses" class="page-view">
+          <div class="expense-split-layout">
+            <div>
+              <div class="filters-bar">
+                <div class="filter-search">
+                  <i data-lucide="search"></i>
+                  <input type="text" id="expense-search" placeholder="Search transactions..." onkeyup="expensesPage.filter()">
+                </div>
+                <select id="expense-filter-cat" class="filter-select" onchange="expensesPage.filter()">
+                  <option value="all">All Categories</option>
+                  <option value="Food">Food 🍔</option>
+                  <option value="Academics">Academics 📚</option>
+                  <option value="Entertainment">Entertainment 🎬</option>
+                  <option value="Travel">Travel 🚗</option>
+                  <option value="Utilities">Subscriptions 📱</option>
+                  <option value="Other">Other 💸</option>
+                </select>
+                <button class="btn btn-secondary" onclick="expensesPage.exportCSV()"><i data-lucide="download"></i> CSV</button>
+              </div>
+
+              <div class="card" style="padding:0; overflow:hidden;">
+                <div style="overflow-x:auto;">
+                  <table style="width:100%; border-collapse:collapse; text-align:left;" id="expenses-table">
+                    <thead>
+                      <tr style="border-bottom:1px solid var(--border); background:rgba(255,255,255,0.02);">
+                        <th style="padding:16px;">Transaction</th>
+                        <th style="padding:16px;">Category</th>
+                        <th style="padding:16px;">Date</th>
+                        <th style="padding:16px; text-align:right;">Amount</th>
+                        <th style="padding:16px; text-align:center;">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="expenses-table-body">
+                      <!-- Dynamic transactions -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- OCR Scanner and Voice entry inputs side widgets -->
+            <div style="display:flex; flex-direction:column; gap:20px;">
+              <!-- Voice entry card -->
+              <div class="card voice-input-card">
+                <button class="mic-btn" id="voice-mic-btn" onclick="voiceInput.toggle()"><i data-lucide="mic"></i></button>
+                <div>
+                  <h4 style="font-size: 0.95rem; font-weight: 700;">Voice Expense Entry</h4>
+                  <p class="voice-status-text" id="voice-status">Click mic and say: "Spent 150 on burger"</p>
+                </div>
+              </div>
+
+              <!-- OCR scanner card -->
+              <div class="card scanner-dropzone" id="ocr-dropzone" onclick="ocrMock.trigger()">
+                <div class="scan-line"></div>
+                <span class="scanner-icon">📸</span>
+                <h4 style="font-weight:700; margin-bottom:4px;">Drag & Drop Receipt</h4>
+                <p style="font-size:0.8rem; color:var(--text-muted);">Click to upload or scan mock receipt details automatically</p>
+              </div>
+
+              <!-- Standard Add Expense Card -->
+              <div class="card">
+                <h3 style="font-size:1.1rem; margin-bottom:20px;">Manual Log Expense</h3>
+                <form onsubmit="event.preventDefault(); expensesPage.addManual();" class="auth-form">
+                  <div class="form-group">
+                    <label for="exp-title">Description</label>
+                    <input type="text" id="exp-title" class="form-input" placeholder="e.g. Cafe Coffee Day" required style="padding-left:16px;">
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="exp-amount">Amount</label>
+                      <input type="number" id="exp-amount" class="form-input" placeholder="₹ Amount" required style="padding-left:16px;">
+                    </div>
+                    <div class="form-group">
+                      <label for="exp-cat">Category</label>
+                      <select id="exp-cat" class="form-input" style="padding-left:16px;">
+                        <option value="Food">Food 🍔</option>
+                        <option value="Academics">Academics 📚</option>
+                        <option value="Entertainment">Entertainment 🎬</option>
+                        <option value="Travel">Travel 🚗</option>
+                        <option value="Utilities">Subscriptions 📱</option>
+                        <option value="Other">Other 💸</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="width:100%; margin-top:10px;">Add Transaction</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 5. SAVINGS GOALS PAGE VIEW ==================== -->
+        <div id="view-savings" class="page-view">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h3 style="font-size: 1.15rem;">Savings Targets</h3>
+            <button class="btn btn-primary" onclick="ui.showModal('modal-add-goal')"><i data-lucide="plus"></i> New Bucket</button>
+          </div>
+          <div class="goals-grid" id="savings-goals-grid">
+            <!-- Dynamic goal cards -->
+          </div>
+        </div>
+
+        <!-- ==================== 6. INVESTMENT PORTFOLIO PAGE VIEW ==================== -->
+        <div id="view-investments" class="page-view">
+          <div class="investments-grid">
+            <div class="card">
+              <h3 style="font-size: 1.1rem; margin-bottom:20px;">Net Asset Growth Trend</h3>
+              <canvas id="chart-investments" style="max-height: 350px; width:100%;"></canvas>
+            </div>
+            
+            <div style="display:flex; flex-direction:column; gap:24px;">
+              <div class="card">
+                <h3 style="font-size: 1.1rem; margin-bottom:20px;">Asset Distribution</h3>
+                <div class="asset-allocation-list" id="assets-list">
+                  <!-- Dynamic asset items -->
+                </div>
+              </div>
+              
+              <!-- Buy SIP Simulation Widget -->
+              <div class="card">
+                <h3 style="font-size: 1.1rem; margin-bottom:16px;">Quick SIP simulator</h3>
+                <form onsubmit="event.preventDefault(); investmentsPage.addInvestment();" class="auth-form">
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label>Asset Class</label>
+                      <select id="invest-class" class="form-input" style="padding-left:16px;">
+                        <option value="Mutual Funds">Mutual Fund 🏢</option>
+                        <option value="Stocks">Equity Stocks 📈</option>
+                        <option value="Crypto">Crypto Assets 🪙</option>
+                        <option value="FD / Debt">Fixed Deposits 🏦</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Amount</label>
+                      <input type="number" id="invest-amount" class="form-input" placeholder="₹ Amount" required style="padding-left:16px;">
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-accent" style="width:100%; margin-top:10px;">Allocate Assets</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 7. BUDGETS PAGE VIEW ==================== -->
+        <div id="view-budgets" class="page-view">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <h3 style="font-size: 1.15rem;">Monthly Budgets</h3>
+            <button class="btn btn-primary" onclick="ui.showModal('modal-add-budget')"><i data-lucide="settings"></i> Set Limits</button>
+          </div>
+          
+          <div class="goals-grid" id="budgets-limits-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <!-- Dynamic budgets cards -->
+          </div>
+        </div>
+
+        <!-- ==================== 8. ANALYTICS PAGE VIEW ==================== -->
+        <div id="view-analytics" class="page-view">
+          <div class="analytics-grid">
+            <div class="card">
+              <h3 style="font-size: 1.15rem; margin-bottom:20px;">Category Spends Analysis</h3>
+              <canvas id="chart-analytics-pie" style="max-height: 280px; width:100%;"></canvas>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 1.15rem; margin-bottom:20px;">Income Vs Outflows Trend</h3>
+              <canvas id="chart-analytics-bar" style="max-height: 280px; width:100%;"></canvas>
+            </div>
+          </div>
+
+          <div class="card heatmap-container">
+            <h3 style="font-size: 1.1rem; margin-bottom:12px;">Financial Discipline Heatmap</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px;">Sleek view tracking daily spends. Darker green blocks show zero-spends (high-discipline days!).</p>
+            <div class="heatmap-grid" id="analytics-heatmap">
+              <!-- Dynamic blocks representing 28 days -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 9. AI INSIGHTS PAGE VIEW ==================== -->
+        <div id="view-ai-insights" class="page-view">
+          <div class="ai-split-layout">
+            <!-- AI Chatbot panel -->
+            <div class="card ai-coach-card">
+              <div class="coach-header">
+                <div class="coach-avatar"><i data-lucide="sparkles"></i></div>
+                <div class="coach-info">
+                  <h4>AI FinCoach</h4>
+                  <span class="coach-status">Online and analyzing</span>
+                </div>
+              </div>
+              <div class="coach-messages" id="coach-message-log">
+                <div class="msg msg-bot">
+                  Hey there, Rohan! I'm your student financial AI coach. Ask me questions like *"Will I exceed my budget?"*, *"How is my Goa savings trip doing?"*, or *"Give me student saving tips."* Let's optimize!
+                </div>
+              </div>
+              <div class="coach-input-wrap">
+                <input type="text" id="coach-user-input" class="coach-input" placeholder="Ask AI finance bot..." onkeydown="if(event.key === 'Enter') aiCoach.sendMessage();">
+                <button class="coach-send-btn" onclick="aiCoach.sendMessage()"><i data-lucide="send"></i></button>
+              </div>
+            </div>
+
+            <!-- Subscription Optimizer panel -->
+            <div style="display:flex; flex-direction:column; gap:24px;">
+              <div class="card">
+                <h3 style="font-size: 1.1rem; margin-bottom:8px;">Student Subscription Optimizer</h3>
+                <p style="font-size: 0.8rem; color:var(--text-muted); margin-bottom: 20px;">Toggle split-plans or cancel unused memberships to boost monthly pocket balances.</p>
+                <div class="optimization-panel" id="subscriptions-container">
+                  <!-- Dynamic subscription cards -->
+                </div>
+              </div>
+
+              <!-- PDF Report Simulation -->
+              <div class="card" style="text-align: center; padding: 40px 20px;">
+                <span style="font-size: 2.5rem; display:block; margin-bottom:12px;">📊</span>
+                <h3 style="font-size:1.15rem; margin-bottom:8px;">Interactive Monthly Statement</h3>
+                <p style="font-size: 0.85rem; color:var(--text-muted); margin-bottom:20px; max-width: 400px; margin-left:auto; margin-right:auto;">Download a beautiful student financial health checkup report (PDF simulator) with streaks, tips, and goals summaries.</p>
+                <button class="btn btn-accent" onclick="ui.downloadPDF()"><i data-lucide="file-text"></i> Download Financial Health Check</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 10. PROFILE & GAMIFICATION VIEW ==================== -->
+        <div id="view-profile" class="page-view">
+          <div class="profile-grid">
+            <div style="display:flex; flex-direction:column; gap:24px;">
+              <!-- Student ID layout Card -->
+              <div class="card profile-id-card">
+                <div class="id-avatar" id="prof-avatar">RS</div>
+                <div class="id-name" id="prof-name">Rohan Sharma</div>
+                <span class="id-rank" id="prof-rank">👑 Level 5 Budget Boss</span>
+                
+                <div class="xp-container">
+                  <div class="xp-header">
+                    <span>XP progress to next level</span>
+                    <span class="xp-val" id="prof-xp">450 / 500 XP</span>
+                  </div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="xp-progress-bar" style="width: 90%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Streak Card -->
+              <div class="card" style="text-align:center;">
+                <span style="font-size: 2.2rem; display:block; margin-bottom:8px;">🔥</span>
+                <h3 style="font-size:1.1rem; margin-bottom:4px;">Savings Streak</h3>
+                <span style="font-size:2.5rem; font-weight:800; color:var(--primary);" id="profile-streak-count">14 Days</span>
+                <p style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">Keep tracking expenses daily to unlock high milestone XP multipliers!</p>
+              </div>
+            </div>
+
+            <div class="profile-card-right">
+              <!-- Gamified savings challenges checkoff board -->
+              <div class="card">
+                <h3 style="font-size:1.1rem; margin-bottom:16px;">Weekly Financial Challenges</h3>
+                <div class="challenge-list" id="challenges-board">
+                  <!-- Dynamic checkoff challenges items -->
+                </div>
+              </div>
+
+              <!-- Achievement badges box -->
+              <div class="card">
+                <h3 style="font-size:1.1rem; margin-bottom:16px;">Unlocked Achievement Badges</h3>
+                <div class="badge-gallery" id="badges-container">
+                  <!-- Dynamic badge gallery -->
+                </div>
+              </div>
+
+              <!-- Friends Leaderboard -->
+              <div class="card">
+                <h3 style="font-size:1.1rem; margin-bottom:16px;">University Leaderboard</h3>
+                <div class="leaderboard-list" id="leaderboard-container">
+                  <!-- Dynamic leaderboard slots -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== 11. SETTINGS PAGE VIEW ==================== -->
+        <div id="view-settings" class="page-view">
+          <div class="settings-container">
+            <div class="settings-section">
+              <h3>Preferences</h3>
+              <div class="setting-row">
+                <div class="setting-label-wrap">
+                  <span class="setting-title">Currency Symbol</span>
+                  <span class="setting-desc">Choose between Rupees (₹) and Dollars ($)</span>
+                </div>
+                <select class="filter-select" id="settings-currency" onchange="settingsPage.changeCurrency()">
+                  <option value="₹">Rupees (₹)</option>
+                  <option value="$">Dollars ($)</option>
+                </select>
+              </div>
+              <div class="setting-row">
+                <div class="setting-label-wrap">
+                  <span class="setting-title">Visual UI Mode</span>
+                  <span class="setting-desc">Switch between Light theme and Dark fintech theme</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="settings-theme-toggle" onchange="ui.toggleTheme()">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <h3>System Actions</h3>
+              <div class="setting-row">
+                <div class="setting-label-wrap">
+                  <span class="setting-title">Reset Financial Data</span>
+                  <span class="setting-desc">Wipe LocalStorage and restore initial mock profile data</span>
+                </div>
+                <button class="btn btn-secondary" onclick="settingsPage.resetData()" style="border-color:#ef4444; color:#ef4444;">Reset App</button>
+              </div>
+              <div class="setting-row" style="border-top: 1px solid var(--border); padding-top:20px;">
+                <div class="setting-label-wrap">
+                  <span class="setting-title">Logout Session</span>
+                  <span class="setting-desc">Log out of Paisa Tracker back to public landing</span>
+                </div>
+                <button class="btn btn-secondary" onclick="auth.logout()"><i data-lucide="log-out"></i> Log Out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+
+  <!-- ==================== MODALS INJECTION SYSTEM ==================== -->
+  
+  <!-- Add expense modal -->
+  <div class="modal-overlay" id="modal-add-expense">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 style="font-weight:700;">Log Expense</h3>
+        <button class="modal-close" onclick="ui.closeModals()"><i data-lucide="x"></i></button>
+      </div>
+      <form onsubmit="event.preventDefault(); expensesPage.addManualModal();" class="auth-form">
+        <div class="form-group">
+          <label for="modal-exp-title">Description</label>
+          <input type="text" id="modal-exp-title" class="form-input" placeholder="e.g. Spotify Premium" required style="padding-left:16px;">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="modal-exp-amount">Amount</label>
+            <input type="number" id="modal-exp-amount" class="form-input" placeholder="₹ Amount" required style="padding-left:16px;">
+          </div>
+          <div class="form-group">
+            <label for="modal-exp-cat">Category</label>
+            <select id="modal-exp-cat" class="form-input" style="padding-left:16px;">
+              <option value="Food">Food 🍔</option>
+              <option value="Academics">Academics 📚</option>
+              <option value="Entertainment">Entertainment 🎬</option>
+              <option value="Travel">Travel 🚗</option>
+              <option value="Utilities">Subscriptions 📱</option>
+              <option value="Other">Other 💸</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:15px;">Add Transaction</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Add Savings goal modal -->
+  <div class="modal-overlay" id="modal-add-goal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 style="font-weight:700;">Create Savings Bucket</h3>
+        <button class="modal-close" onclick="ui.closeModals()"><i data-lucide="x"></i></button>
+      </div>
+      <form onsubmit="event.preventDefault(); savingsPage.addGoal();" class="auth-form">
+        <div class="form-group">
+          <label for="goal-name-input">Goal Name</label>
+          <input type="text" id="goal-name-input" class="form-input" placeholder="e.g. New Laptop" required style="padding-left:16px;">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="goal-target-input">Target Amount</label>
+            <input type="number" id="goal-target-input" class="form-input" placeholder="e.g. ₹20000" required style="padding-left:16px;">
+          </div>
+          <div class="form-group">
+            <label for="goal-emoji-input">Emoji Icon</label>
+            <input type="text" id="goal-emoji-input" class="form-input" placeholder="e.g. 💻" required style="padding-left:16px;">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:15px;">Create Bucket</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Set budget limit modal -->
+  <div class="modal-overlay" id="modal-add-budget">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 style="font-weight:700;">Set Category Budget Limit</h3>
+        <button class="modal-close" onclick="ui.closeModals()"><i data-lucide="x"></i></button>
+      </div>
+      <form onsubmit="event.preventDefault(); budgetsPage.updateLimit();" class="auth-form">
+        <div class="form-group">
+          <label>Category</label>
+          <select id="budget-cat-select" class="form-input" style="padding-left:16px;">
+            <option value="Food">Food 🍔</option>
+            <option value="Academics">Academics 📚</option>
+            <option value="Entertainment">Entertainment 🎬</option>
+            <option value="Travel">Travel 🚗</option>
+            <option value="Utilities">Subscriptions 📱</option>
+            <option value="Other">Other 💸</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="budget-limit-input">Monthly Limit</label>
+          <input type="number" id="budget-limit-input" class="form-input" placeholder="e.g. ₹3000" required style="padding-left:16px;">
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-top:15px;">Update Limit</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ==================== EXTERNAL JS LIBRARIES ==================== -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- App JS logic -->
+  <script src="app.js"></script>
+</body>
+</html>
